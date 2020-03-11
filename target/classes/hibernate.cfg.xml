@@ -45,10 +45,11 @@
         
         
         <!-- Ovdje navodimo naše mapirane klase -->
-        <mapping class="hr.edunova.edunovaapp.model.Polaznik" />
-        <mapping class="hr.edunova.edunovaapp.model.Predavac" />
-        <mapping class="hr.edunova.edunovaapp.model.Smjer" />
-        <mapping class="hr.edunova.edunovaapp.model.Grupa" />
+        <mapping class="hr.edunova.servismobitelaapp.model.Korisnik" />
+        <mapping class="hr.edunova.servismobitelaapp.model.Poslovnica" />
+        <mapping class="hr.edunova.servismobitelaapp.model.Servis" />
+        <mapping class="hr.edunova.servismobitelaapp.model.Serviser" />
+        <mapping class="hr.edunova.servismobitelaapp.model.Usluga" />
         
         
     </session-factory>
