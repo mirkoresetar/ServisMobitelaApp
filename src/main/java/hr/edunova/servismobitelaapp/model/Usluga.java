@@ -6,7 +6,10 @@
 package hr.edunova.servismobitelaapp.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -24,7 +27,8 @@ public class  Usluga extends Entitet{
     private BigDecimal cijena;
     
     
-    
+    @OneToMany(mappedBy = "usluga")
+    private List<Clan> clanovi = new ArrayList<>();
     
 
     public String getImeUsluge() {
@@ -42,8 +46,14 @@ public class  Usluga extends Entitet{
     public void setCijena(BigDecimal cijena) {
         this.cijena = cijena;
     }
+
+    public List<Clan> getClanovi() {
+       return clanovi;
+    }
     
-    
+    public void setClanovi(List<Clan> clanovi) {
+        this.clanovi = clanovi;
+    }
     
     
 }
