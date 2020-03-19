@@ -50,6 +50,7 @@
         <mapping class="hr.edunova.servismobitelaapp.model.Servis" />
         <mapping class="hr.edunova.servismobitelaapp.model.Serviser" />
         <mapping class="hr.edunova.servismobitelaapp.model.Usluga" />
+        <mapping class="hr.edunova.servismobitelaapp.model.Clan" />
         
         
     </session-factory>

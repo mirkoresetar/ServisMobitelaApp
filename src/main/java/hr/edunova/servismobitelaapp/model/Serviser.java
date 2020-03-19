@@ -2,18 +2,23 @@
 package hr.edunova.servismobitelaapp.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
  * @author Mirko
  */
 
-@Entity(name = "serviser")
+@Entity
+@Table(name = "serviser")
 public class Serviser extends Entitet{
     
     private String ime;
     private String prezime;
     private String iban;
+    
+   
+   
 
     public String getIme() {
         return ime;

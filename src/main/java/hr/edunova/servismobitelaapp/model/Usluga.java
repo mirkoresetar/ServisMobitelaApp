@@ -7,19 +7,25 @@ package hr.edunova.servismobitelaapp.model;
 
 import java.math.BigDecimal;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
  * @author Mirko
  */
 
-@Entity(name="usluga")
-public class  Usluga extends Servis{
+@Entity
+@Table(name="usluga")
+public class  Usluga extends Entitet{
 
     
     
     private String imeUsluge;
     private BigDecimal cijena;
+    
+    
+    
+    
 
     public String getImeUsluge() {
         return imeUsluge;

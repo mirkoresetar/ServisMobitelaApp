@@ -6,13 +6,15 @@
 package hr.edunova.servismobitelaapp.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
  * @author Mirko
  */
 
-@Entity(name = "korisnik")
+@Entity
+@Table(name = "korisnik")
 public class Korisnik extends Entitet{
     
     private String ime;
