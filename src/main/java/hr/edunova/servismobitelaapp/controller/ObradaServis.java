@@ -5,10 +5,48 @@
  */
 package hr.edunova.servismobitelaapp.controller;
 
+import hr.edunova.servismobitelaapp.model.Servis;
+import hr.edunova.servismobitelaapp.util.EdunovaException;
+import java.util.List;
+
 /**
  *
  * @author Mirko
  */
-public class ObradaServis {
+public class ObradaServis extends Obrada<Servis>{
+
+    public ObradaServis(Servis entitet) {
+        super(entitet);
+    }
+
+    public ObradaServis() {
+        super();
+    }
+
+    
+    @Override
+    protected void kontrolaCreate() throws EdunovaException {
+        
+    }
+
+    @Override
+    protected void kontrolaUpdate() throws EdunovaException {
+      
+    }
+
+    @Override
+    protected void kontrolaDelete() throws EdunovaException {
+      
+    }
+
+    @Override
+    public List<Servis> getPodaci() {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+    @Override
+    protected void nakonSpremanja() throws EdunovaException {
+        
+    }
     
 }
