@@ -6,6 +6,8 @@
 package hr.edunova.servismobitelaapp;
 
 import hr.edunova.servismobitelaapp.util.HibernateUtil;
+import hr.edunova.servismobitelaapp.util.Pomocno;
+import hr.edunova.servismobitelaapp.view.SplashScreen;
 
 /**
  *
@@ -13,7 +15,9 @@ import hr.edunova.servismobitelaapp.util.HibernateUtil;
  */
 public class Start {
     public Start(){
-        HibernateUtil.getSessionFactory().openSession();
+        new SplashScreen().setVisible(true);
+        //Pomocno.pocetniInsert();
+        //HibernateUtil.getSessionFactory().openSession();
         /*
         Osoba o = new Osoba();
         o.setIme("Pero");

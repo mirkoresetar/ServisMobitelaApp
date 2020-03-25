@@ -1,8 +1,8 @@
 hr\edunova\servismobitelaapp\model\Servis.class
-hr\edunova\servismobitelaapp\model\Usluga.class
 hr\edunova\servismobitelaapp\model\Korisnik.class
 hr\edunova\servismobitelaapp\util\HibernateUtil.class
-hr\edunova\servismobitelaapp\model\Entitet.class
 hr\edunova\servismobitelaapp\Start.class
+hr\edunova\servismobitelaapp\model\Usluga.class
+hr\edunova\servismobitelaapp\model\Entitet.class
 hr\edunova\servismobitelaapp\model\Serviser.class
 hr\edunova\servismobitelaapp\model\Poslovnica.class
