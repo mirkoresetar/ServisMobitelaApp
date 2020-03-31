@@ -1,2 +1,2 @@
-# ServisMobitelaApp
- Java aplikacija za servis mobitela
+# ServisMobitelaAPP
+ Aplikacija za rad u servisu mobitela
