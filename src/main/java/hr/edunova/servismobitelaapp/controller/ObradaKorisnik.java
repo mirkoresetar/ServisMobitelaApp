@@ -22,7 +22,7 @@ public class ObradaKorisnik extends Obrada<Korisnik>{
     
     @Override
     protected void kontrolaCreate() throws EdunovaException {
-      kontrolaCreate();
+      
         
     }
 

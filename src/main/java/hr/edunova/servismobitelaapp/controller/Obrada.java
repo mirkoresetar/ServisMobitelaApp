@@ -15,7 +15,7 @@ import org.hibernate.Session;
  *
  * @author Profesor
  */
-public abstract class Obrada<T> {
+public abstract class Obrada<T > {
     
     protected T entitet;
     protected Session session;
