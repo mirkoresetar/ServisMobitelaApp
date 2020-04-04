@@ -35,7 +35,7 @@ public class Serviser extends Entitet{
     public void setPrezime(String prezime) {
         this.prezime = prezime;
     }
-
+    
     public String getIban() {
         return iban;
     }

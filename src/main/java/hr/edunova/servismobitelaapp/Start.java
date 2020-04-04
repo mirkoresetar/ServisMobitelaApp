@@ -32,6 +32,7 @@ public class Start {
         HibernateUtil.shutdown();
         */
        new Izbornik().setVisible(true);
+       
     }
     
     

@@ -7,7 +7,7 @@ package hr.edunova.servismobitelaapp.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
+import java.math.BigInteger;
 /**
  *
  * @author Mirko
@@ -37,14 +37,17 @@ public class Korisnik extends Entitet{
     public void setPrezime(String prezime) {
         this.prezime = prezime;
     }
-
+    
     public Integer getTelefon() {
         return telefon;
     }
-
+   
+            
     public void setTelefon(Integer telefon) {
         this.telefon = telefon;
     }
+
+    
 
     public String getEmail() {
         return email;
