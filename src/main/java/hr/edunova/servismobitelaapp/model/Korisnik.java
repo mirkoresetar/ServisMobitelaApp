@@ -8,6 +8,7 @@ package hr.edunova.servismobitelaapp.model;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.math.BigInteger;
+
 /**
  *
  * @author Mirko
@@ -15,8 +16,8 @@ import java.math.BigInteger;
 
 @Entity
 @Table(name = "korisnik")
-public class Korisnik extends Entitet{
-    
+public class Korisnik extends Entitet {
+
     private String ime;
     private String prezime;
     private Integer telefon;
@@ -37,17 +38,14 @@ public class Korisnik extends Entitet{
     public void setPrezime(String prezime) {
         this.prezime = prezime;
     }
-    
+
     public Integer getTelefon() {
         return telefon;
     }
-   
-            
+
     public void setTelefon(Integer telefon) {
         this.telefon = telefon;
     }
-
-    
 
     public String getEmail() {
         return email;
@@ -60,8 +58,8 @@ public class Korisnik extends Entitet{
     @Override
     public String toString() {
         return prezime + " " + ime;
+        
     }
     
-    
-    
+   
 }

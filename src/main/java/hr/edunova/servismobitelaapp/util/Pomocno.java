@@ -24,6 +24,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import org.hibernate.type.IntegerType;
 
 
 /**
@@ -52,6 +53,14 @@ public class Pomocno {
         } catch (Exception e) {
             return 0;
         }
+    }
+  public static String getStringIzBroja(Integer p){
+      try {
+          return Integer.toString(p);
+          
+      } catch (Exception e) {
+          return null ;
+      }
     }
     
   public static String getFormatDecimalniBroj(BigDecimal b){
