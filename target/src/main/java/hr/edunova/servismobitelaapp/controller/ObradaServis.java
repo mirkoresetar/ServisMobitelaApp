@@ -41,7 +41,7 @@ public class ObradaServis extends Obrada<Servis>{
 
     @Override
     public List<Servis> getPodaci() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+       return session.createQuery("from Servis").list();
     }
 
     @Override

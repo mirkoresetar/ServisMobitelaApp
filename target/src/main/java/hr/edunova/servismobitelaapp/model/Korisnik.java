@@ -7,6 +7,7 @@ package hr.edunova.servismobitelaapp.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.math.BigInteger;
 
 /**
  *
@@ -15,11 +16,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "korisnik")
-public class Korisnik extends Entitet{
-    
+public class Korisnik extends Entitet {
+
     private String ime;
     private String prezime;
-    private Integer telefon;
+    private String telefon;
     private String email;
 
     public String getIme() {
@@ -38,14 +39,15 @@ public class Korisnik extends Entitet{
         this.prezime = prezime;
     }
 
-    public Integer getTelefon() {
+    public String getTelefon() {
         return telefon;
     }
 
-    public void setTelefon(Integer telefon) {
+    public void setTelefon(String telefon) {
         this.telefon = telefon;
     }
 
+   
     public String getEmail() {
         return email;
     }
@@ -54,8 +56,11 @@ public class Korisnik extends Entitet{
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return prezime + " " + ime;
+        
+    }
     
-    
-    
-    
+   
 }

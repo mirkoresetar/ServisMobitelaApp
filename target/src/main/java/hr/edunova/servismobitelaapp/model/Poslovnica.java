@@ -38,6 +38,13 @@ public class Poslovnica extends Entitet{
     public void setAdresa(String adresa) {
         this.adresa = adresa;
     }
+
+    @Override
+    public String toString() {
+        return ime;
+    }
+
+    
     
     
     

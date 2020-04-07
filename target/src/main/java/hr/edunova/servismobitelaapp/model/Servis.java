@@ -20,20 +20,19 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "servis")
-public class Servis extends Entitet{
-    
+public class Servis extends Entitet {
+
+    private String opisKvara;
     private Date vrijemePocetka;
-    private Date vrijemeZavrsetkatka;
+    private String radnihSati;
     private BigDecimal cijena;
-    
-  
-    
+
     @ManyToOne
     private Serviser serviser;
-    
-     @OneToMany(mappedBy = "servis")
+
+    @OneToMany(mappedBy = "servis")
     private List<Clan> clanovi = new ArrayList<>();
-   
+
     public Date getVrijemePocetka() {
         return vrijemePocetka;
     }
@@ -42,13 +41,7 @@ public class Servis extends Entitet{
         this.vrijemePocetka = vrijemePocetka;
     }
 
-    public Date getVrijemeZavrsetkatka() {
-        return vrijemeZavrsetkatka;
-    }
-
-    public void setVrijemeZavrsetkatka(Date vrijemeZavrsetkatka) {
-        this.vrijemeZavrsetkatka = vrijemeZavrsetkatka;
-    }
+    
 
     public BigDecimal getCijena() {
         return cijena;
@@ -73,6 +66,26 @@ public class Servis extends Entitet{
     public void setClanovi(List<Clan> clanovi) {
         this.clanovi = clanovi;
     }
-    
 
+    public String getOpisKvara() {
+        return opisKvara;
+    }
+
+    public void setOpisKvara(String opisKvara) {
+        this.opisKvara = opisKvara;
+    }
+
+    public String getRadnihSati() {
+        return radnihSati;
+    }
+
+    public void setRadnihSati(String radnihSati) {
+        this.radnihSati = radnihSati;
+    }
+    
+    @Override
+    public String toString() {
+        return opisKvara;
+    }
+    
 }

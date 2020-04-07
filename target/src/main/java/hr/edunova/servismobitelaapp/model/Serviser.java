@@ -35,13 +35,17 @@ public class Serviser extends Entitet{
     public void setPrezime(String prezime) {
         this.prezime = prezime;
     }
-
+    
     public String getIban() {
         return iban;
     }
 
     public void setIban(String iban) {
         this.iban = iban;
+    }
+    @Override
+    public String toString() {
+        return prezime + " " + ime;
     }
     
 }

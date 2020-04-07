@@ -18,20 +18,9 @@ public class Start {
     public Start(){
         new SplashScreen().setVisible(true);
         //Pomocno.pocetniInsert();
-        //HibernateUtil.getSessionFactory().openSession();
-        /*
-        Osoba o = new Osoba();
-        o.setIme("Pero");
-        o.setPrezime("čšćđžČŠĆĐŽ");
-        
-        Session s = HibernateUtil.getSessionFactory().openSession();
-        s.beginTransaction();
-        s.save(o);
-        s.getTransaction().commit();
-        s.close();
-        HibernateUtil.shutdown();
-        */
-       new Izbornik().setVisible(true);
+        //Pomocno.dodajKorisnika(1000);
+       //new Izbornik().setVisible(true);
+       
     }
     
     

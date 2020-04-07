@@ -92,7 +92,7 @@ public class Izbornik extends javax.swing.JFrame {
 
         jMenu2.setText("Programi");
 
-        jMenuItem2.setText("Smjerovi");
+        jMenuItem2.setText("Korisnik");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -100,7 +100,7 @@ public class Izbornik extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem2);
 
-        jMenuItem3.setText("Predavači");
+        jMenuItem3.setText("Poslovnica");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -108,7 +108,7 @@ public class Izbornik extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem3);
 
-        jMenuItem4.setText("Polaznici");
+        jMenuItem4.setText("Servis");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -116,7 +116,7 @@ public class Izbornik extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem4);
 
-        jMenuItem5.setText("Grupe");
+        jMenuItem5.setText("Serviser");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);

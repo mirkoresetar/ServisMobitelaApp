@@ -22,6 +22,7 @@ public class ObradaKorisnik extends Obrada<Korisnik>{
     
     @Override
     protected void kontrolaCreate() throws EdunovaException {
+      
         
     }
 
@@ -37,9 +38,15 @@ public class ObradaKorisnik extends Obrada<Korisnik>{
 
     @Override
     public List<Korisnik> getPodaci() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return session.createQuery("from Korisnik").list();
     }
-
+    public List<Korisnik> getPodaci(String uvjet){
+        return session.createQuery("from Korisnik p "
+                + " where concat(p.ime, ' ', p.prezime) like :uvjet "
+                + " or concat(p.prezime, ' ', p.ime) like :uvjet ")
+                .setParameter("uvjet", "%" + uvjet + "%")
+                .setMaxResults(20).list();
+    }
     @Override
     protected void nakonSpremanja() throws EdunovaException {
         

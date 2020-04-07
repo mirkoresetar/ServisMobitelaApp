@@ -15,7 +15,7 @@ import org.hibernate.Session;
  *
  * @author Profesor
  */
-public abstract class Obrada<T> {
+public abstract class Obrada<T > {
     
     protected T entitet;
     protected Session session;
@@ -33,10 +33,17 @@ public abstract class Obrada<T> {
     public Obrada() {
         session = HibernateUtil.getSessionFactory().openSession();
     }
-    
+    public T getEntitet() {
+        return entitet;
+    }
+
+    public void setEntitet(T entitet) {
+        this.entitet = entitet;
+    }
     
     
     public T create() throws EdunovaException{
+        System.out.println(entitet);
         kontrolaCreate();
         save();
         nakonSpremanja();
