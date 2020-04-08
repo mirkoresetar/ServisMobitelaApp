@@ -40,14 +40,14 @@ public class ViewKorisnik extends javax.swing.JFrame {
     private void ucitajVrijednosti() {
         obrada.getEntitet().setIme(txtIme.getText());
         obrada.getEntitet().setPrezime(txtPrezime.getText());
-        obrada.getEntitet().setTelefon(Pomocno.getCijeliBrojIzStringa(txtTelefon.getText()));
-        obrada.getEntitet().setEmail(txtEmail.getName());
+        obrada.getEntitet().setTelefon(txtTelefon.getText());
+        obrada.getEntitet().setEmail(txtEmail.getText());
     }
 
     private void postaviVrijednosti() {
         txtIme.setText(obrada.getEntitet().getIme());
         txtPrezime.setText(obrada.getEntitet().getPrezime());
-        txtTelefon.setText(Pomocno.getFormatCijelogBroja(obrada.getEntitet().getTelefon()));
+        txtTelefon.setText(obrada.getEntitet().getTelefon());
         txtEmail.setText(obrada.getEntitet().getEmail());
 
     }
@@ -71,6 +71,7 @@ public class ViewKorisnik extends javax.swing.JFrame {
         lstPodaci = new javax.swing.JList<>();
         jbtnObrisi = new javax.swing.JButton();
         txtUvjet = new javax.swing.JTextField();
+        btnGenerirajEmail = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -147,6 +148,13 @@ public class ViewKorisnik extends javax.swing.JFrame {
             }
         });
 
+        btnGenerirajEmail.setText("generiraj Email");
+        btnGenerirajEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerirajEmailActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,27 +163,35 @@ public class ViewKorisnik extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtUvjet)
+                        .addComponent(txtUvjet, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                         .addGap(22, 22, 22)
                         .addComponent(jbtnTrazi))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIme, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-                    .addComponent(txtEmail)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbtnDodajNovi)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbtnPromijeni)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbtnObrisi))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPrezime)
-                    .addComponent(txtTelefon))
-                .addGap(93, 93, 93))
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbtnDodajNovi)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbtnPromijeni)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbtnObrisi))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnGenerirajEmail)))))
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,19 +205,22 @@ public class ViewKorisnik extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
+                        .addGap(6, 6, 6)
+                        .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(10, 10, 10)
                         .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel3)
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
+                        .addGap(24, 24, 24)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGenerirajEmail))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jbtnDodajNovi)
@@ -212,6 +231,7 @@ public class ViewKorisnik extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtImeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImeActionPerformed
@@ -235,7 +255,7 @@ public class ViewKorisnik extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void jbtnDodajNoviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDodajNoviActionPerformed
-       try {
+        try {
             obrada.setEntitet(new Korisnik());
             ucitajVrijednosti();
             obrada.create();
@@ -245,15 +265,15 @@ public class ViewKorisnik extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    
+
     }//GEN-LAST:event_jbtnDodajNoviActionPerformed
 
     private void jbtnPromijeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPromijeniActionPerformed
-       if (obrada.getEntitet() == null) {
+        if (obrada.getEntitet() == null) {
             JOptionPane.showMessageDialog(null, "Prvo odaberite stavku");
             return;
-       }
-       ucitajVrijednosti();
+        }
+        ucitajVrijednosti();
         try {
             obrada.update();
             ucitaj();
@@ -287,13 +307,34 @@ public class ViewKorisnik extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnObrisiActionPerformed
 
     private void txtUvjetKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUvjetKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ucitaj();
         }
     }//GEN-LAST:event_txtUvjetKeyPressed
 
+    private void btnGenerirajEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerirajEmailActionPerformed
+        if (txtIme.getText().isEmpty() || txtPrezime.getText().isEmpty()) {
+            return;
+        }
+
+        txtEmail.setText(
+                ocistiSuskavce(
+                        txtIme.getText().substring(0, 1).toLowerCase()
+                        + txtPrezime.getText().toLowerCase()
+                        + "@gmail.com"
+                )
+        );
+    }//GEN-LAST:event_btnGenerirajEmailActionPerformed
+    private String ocistiSuskavce(String s) {
+        return s.replace("š", "s")
+                .replace("đ", "d")
+                .replace("ž", "z")
+                .replace("ć", "c")
+                .replace("č", "c");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGenerirajEmail;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

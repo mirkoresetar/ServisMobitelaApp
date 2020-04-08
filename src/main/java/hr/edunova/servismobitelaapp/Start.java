@@ -19,7 +19,7 @@ public class Start {
         new SplashScreen().setVisible(true);
         //Pomocno.pocetniInsert();
         //Pomocno.dodajKorisnika(1000);
-       new Izbornik().setVisible(true);
+     
        
     }
     

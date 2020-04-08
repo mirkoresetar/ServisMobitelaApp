@@ -16,6 +16,9 @@ public class Serviser extends Entitet{
     private String ime;
     private String prezime;
     private String iban;
+    private String Oib;
+    private String lozinka;
+    private String email;
     
    
    
@@ -42,6 +45,36 @@ public class Serviser extends Entitet{
 
     public void setIban(String iban) {
         this.iban = iban;
+    }
+
+    public String getOib() {
+        return Oib;
+    }
+
+    public void setOib(String Oib) {
+        this.Oib = Oib;
+    }
+
+    public String getLozinka() {
+        return lozinka;
+    }
+
+    public void setLozinka(String lozinka) {
+        this.lozinka = lozinka;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    
+    @Override
+    public String toString() {
+        return prezime + " " + ime;
     }
     
 }

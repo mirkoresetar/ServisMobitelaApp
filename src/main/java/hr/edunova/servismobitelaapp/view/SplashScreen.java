@@ -5,6 +5,10 @@
  */
 package hr.edunova.servismobitelaapp.view;
 
+import hr.edunova.servismobitelaapp.util.HibernateUtil;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
+
 /**
  *
  * @author Mirko
@@ -16,10 +20,24 @@ public class SplashScreen extends javax.swing.JFrame {
      */
     public SplashScreen() {
         initComponents();
-        
+        Ucitavanje ucitavanje = new Ucitavanje();
+        ucitavanje.start();
         
     }
+    private class Ucitavanje extends Thread{
 
+        @Override
+        public void run() {
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            if(s.getMetamodel().getEntities().size()>0){
+                //new Autorizacija().setVisible(true);
+                new Izbornik().setVisible(true);
+                dispose();
+            
+            }
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,7 +58,7 @@ public class SplashScreen extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mirko\\Downloads\\servismobitelalogo.png")); // NOI18N
         jLabel1.setToolTipText("");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(-10, 0, 450, 300);
+        jLabel1.setBounds(70, 0, 450, 300);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -49,7 +67,7 @@ public class SplashScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -57,6 +75,7 @@ public class SplashScreen extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
