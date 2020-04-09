@@ -31,7 +31,18 @@ public class Servis extends Entitet {
     private Serviser serviser;
 
     @OneToMany(mappedBy = "servis")
-    private List<Clan> clanovi = new ArrayList<>();
+    private List<Usluga> usluge = new ArrayList<>();
+
+    public List<Usluga> getUsluge() {
+        return usluge;
+    }
+
+    public void setUsluge(List<Usluga> usluge) {
+        this.usluge = usluge;
+    }
+    
+    
+    
 
     public Date getVrijemePocetka() {
         return vrijemePocetka;
@@ -59,13 +70,7 @@ public class Servis extends Entitet {
         this.serviser = serviser;
     }
 
-    public List<Clan> getClanovi() {
-        return clanovi;
-    }
-
-    public void setClanovi(List<Clan> clanovi) {
-        this.clanovi = clanovi;
-    }
+    
 
     public String getOpisKvara() {
         return opisKvara;

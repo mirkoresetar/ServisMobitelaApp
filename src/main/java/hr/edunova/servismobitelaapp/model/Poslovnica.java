@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Table(name = "poslovnica")
 public class Poslovnica extends Entitet{
     
+    
     private String ime;
     private String adresa;
     
@@ -22,9 +23,31 @@ public class Poslovnica extends Entitet{
     @ManyToOne
     private Serviser serviser;
     
+    @ManyToOne
+    private Usluga usluga;
+  
+    
+   
+    
 
     public String getIme() {
         return ime;
+    }
+
+    public Korisnik getKorisnik() {
+        return korisnik;
+    }
+
+    public void setKorisnik(Korisnik korisnik) {
+        this.korisnik = korisnik;
+    }
+
+    public Serviser getServiser() {
+        return serviser;
+    }
+
+    public void setServiser(Serviser serviser) {
+        this.serviser = serviser;
     }
 
     public void setIme(String ime) {
@@ -39,6 +62,14 @@ public class Poslovnica extends Entitet{
         this.adresa = adresa;
     }
 
+    public Usluga getUsluga() {
+        return usluga;
+    }
+
+    public void setUsluga(Usluga usluga) {
+        this.usluga = usluga;
+    }
+    
     @Override
     public String toString() {
         return ime;

@@ -43,7 +43,13 @@ public class ObradaServis extends Obrada<Servis>{
     public List<Servis> getPodaci() {
        return session.createQuery("from Servis").list();
     }
-
+    public List<Servis> getPodaci(String uvjet){
+        return session.createQuery("from Servis p "
+                + " where concat(p.opisKvara) like :uvjet ")
+               
+                .setParameter("uvjet", "%" + uvjet + "%")
+                .setMaxResults(20).list();
+    }
     @Override
     protected void nakonSpremanja() throws EdunovaException {
         

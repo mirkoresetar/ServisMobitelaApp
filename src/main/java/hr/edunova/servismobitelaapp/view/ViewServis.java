@@ -12,6 +12,7 @@ import hr.edunova.servismobitelaapp.model.Servis;
 import hr.edunova.servismobitelaapp.model.Serviser;
 import hr.edunova.servismobitelaapp.model.Usluga;
 import hr.edunova.servismobitelaapp.util.EdunovaException;
+import hr.edunova.servismobitelaapp.util.Pomocno;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -35,9 +36,10 @@ public class ViewServis extends javax.swing.JFrame {
     
     private void ucitajVrijednosti() {
         obrada.getEntitet().setOpisKvara(txtNaziv.getText());
-        obrada.getEntitet().setServiser(smbServiser.getItemAt(smbServiser.getSelectedIndex()));
+        obrada.getEntitet().setServiser(cmbServiser.getItemAt(cmbServiser.getSelectedIndex()));
         obrada.getEntitet().setVrijemePocetka(new Date());
         obrada.getEntitet().setRadnihSati(txtradnihSati.getText());
+        obrada.getEntitet().setCijena(Pomocno.getDecimalniBrojIzStringa(txtCijena.getText()));
         
     }
     
@@ -45,13 +47,15 @@ public class ViewServis extends javax.swing.JFrame {
         txtNaziv.setText(obrada.getEntitet().getOpisKvara());
         txtVrijemePocetka.setText(obrada.getEntitet().getVrijemePocetka().toString());
         txtradnihSati.setText(obrada.getEntitet().getRadnihSati());
+        txtCijena.setText(Pomocno.getFormatDecimalniBroj(obrada.getEntitet().getCijena()));
+        
         
     }
     
     private void ucitajServisere() {
         DefaultComboBoxModel<Serviser> m = new DefaultComboBoxModel<>();
         new ObradaServiser().getPodaci().forEach(s -> m.addElement(s));
-        smbServiser.setModel(m);
+        cmbServiser.setModel(m);
     }
     
     private void ucitaj() {
@@ -71,12 +75,14 @@ public class ViewServis extends javax.swing.JFrame {
         btnObrisi = new javax.swing.JButton();
         txtNaziv = new javax.swing.JTextField();
         txtVrijemePocetka = new javax.swing.JTextField();
-        smbServiser = new javax.swing.JComboBox<>();
+        cmbServiser = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtradnihSati = new javax.swing.JTextField();
+        txtCijena = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -120,9 +126,9 @@ public class ViewServis extends javax.swing.JFrame {
             }
         });
 
-        smbServiser.addActionListener(new java.awt.event.ActionListener() {
+        cmbServiser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                smbServiserActionPerformed(evt);
+                cmbServiserActionPerformed(evt);
             }
         });
 
@@ -140,6 +146,14 @@ public class ViewServis extends javax.swing.JFrame {
             }
         });
 
+        txtCijena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCijenaActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Cijena");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,21 +162,24 @@ public class ViewServis extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnDodajNovi)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPromjeni)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnObrisi))
-                    .addComponent(txtNaziv)
-                    .addComponent(txtVrijemePocetka)
-                    .addComponent(smbServiser, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtradnihSati))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnDodajNovi)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnPromjeni)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnObrisi))
+                        .addComponent(txtNaziv)
+                        .addComponent(txtVrijemePocetka)
+                        .addComponent(cmbServiser, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtradnihSati)
+                        .addComponent(txtCijena))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(139, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -181,15 +198,19 @@ public class ViewServis extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtVrijemePocetka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtradnihSati, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addGap(8, 8, 8)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(smbServiser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addComponent(cmbServiser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addGap(9, 9, 9)
+                        .addComponent(txtCijena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addGap(13, 13, 13)
+                        .addComponent(txtradnihSati, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDodajNovi)
                             .addComponent(btnPromjeni)
@@ -242,9 +263,9 @@ public class ViewServis extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
 
-    private void smbServiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smbServiserActionPerformed
+    private void cmbServiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbServiserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_smbServiserActionPerformed
+    }//GEN-LAST:event_cmbServiserActionPerformed
 
     private void txtNazivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNazivActionPerformed
         // TODO add your handling code here:
@@ -270,18 +291,24 @@ public class ViewServis extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtradnihSatiActionPerformed
 
+    private void txtCijenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCijenaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCijenaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodajNovi;
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromjeni;
+    private javax.swing.JComboBox<Serviser> cmbServiser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<Servis> lstPodaci;
-    private javax.swing.JComboBox<Serviser> smbServiser;
+    private javax.swing.JTextField txtCijena;
     private javax.swing.JTextField txtNaziv;
     private javax.swing.JTextField txtVrijemePocetka;
     private javax.swing.JTextField txtradnihSati;

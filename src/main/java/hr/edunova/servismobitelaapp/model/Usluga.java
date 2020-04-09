@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,7 +25,13 @@ public class  Usluga extends Entitet{
     
     
     private String imeUsluge;
-    private BigDecimal cijena;
+    
+    
+    @ManyToOne
+    private Servis servis;
+    
+    @ManyToOne
+    private Poslovnica poslovnica;
     
     
     @OneToMany(mappedBy = "usluga")
@@ -39,13 +46,7 @@ public class  Usluga extends Entitet{
         this.imeUsluge = imeUsluge;
     }
 
-    public BigDecimal getCijena() {
-        return cijena;
-    }
-
-    public void setCijena(BigDecimal cijena) {
-        this.cijena = cijena;
-    }
+    
 
     public List<Clan> getClanovi() {
        return clanovi;
@@ -53,6 +54,28 @@ public class  Usluga extends Entitet{
     
     public void setClanovi(List<Clan> clanovi) {
         this.clanovi = clanovi;
+    }
+
+    public Servis getServis() {
+        return servis;
+    }
+
+    public void setServis(Servis servis) {
+        this.servis = servis;
+    }
+
+    public Poslovnica getPoslovnica() {
+        return poslovnica;
+    }
+
+    public void setPoslovnica(Poslovnica poslovnica) {
+        this.poslovnica = poslovnica;
+    }
+    
+
+    @Override
+    public String toString() {
+        return imeUsluge;
     }
     
     
