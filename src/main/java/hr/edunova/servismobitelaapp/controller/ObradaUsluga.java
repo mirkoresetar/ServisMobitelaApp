@@ -7,6 +7,7 @@ package hr.edunova.servismobitelaapp.controller;
 
 import hr.edunova.servismobitelaapp.model.Usluga;
 import hr.edunova.servismobitelaapp.util.EdunovaException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,6 +47,15 @@ public class ObradaUsluga extends Obrada<Usluga>{
             session.save(c);
         });
         session.getTransaction().commit();
+    }
+     
+     public void ocistiClanove(){
+        session.beginTransaction();
+        entitet.getClanovi().forEach((c)->{
+            session.delete(c);
+        });
+         session.getTransaction().commit();
+        entitet.setClanovi(new ArrayList<>());
     }
     @Override
     protected void kontrolaCreate() throws EdunovaException {

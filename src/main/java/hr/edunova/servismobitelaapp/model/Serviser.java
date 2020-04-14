@@ -1,7 +1,10 @@
 
 package hr.edunova.servismobitelaapp.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -20,7 +23,8 @@ public class Serviser extends Entitet{
     private String lozinka;
     private String email;
     
-   
+   @OneToMany(mappedBy = "serviser")
+    private List<Usluga> grupe=new ArrayList<>();
    
 
     public String getIme() {
@@ -70,6 +74,15 @@ public class Serviser extends Entitet{
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<Usluga> getGrupe() {
+        return grupe;
+    }
+
+    public void setGrupe(List<Usluga> grupe) {
+        this.grupe = grupe;
+    }
+    
     
     
     @Override

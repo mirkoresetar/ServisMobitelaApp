@@ -23,8 +23,7 @@ public class Poslovnica extends Entitet{
     @ManyToOne
     private Serviser serviser;
     
-    @ManyToOne
-    private Usluga usluga;
+    
   
     
    
@@ -62,13 +61,7 @@ public class Poslovnica extends Entitet{
         this.adresa = adresa;
     }
 
-    public Usluga getUsluga() {
-        return usluga;
-    }
-
-    public void setUsluga(Usluga usluga) {
-        this.usluga = usluga;
-    }
+    
     
     @Override
     public String toString() {

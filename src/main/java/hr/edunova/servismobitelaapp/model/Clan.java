@@ -16,6 +16,9 @@ public class Clan extends Entitet{
     
     @ManyToOne
     private Usluga usluga;
+    
+    @ManyToOne
+    private Serviser serviser;
 
     public Servis getServis() {
         return servis;
@@ -31,6 +34,14 @@ public class Clan extends Entitet{
 
     public void setUsluga(Usluga usluga) {
         this.usluga = usluga;
+    }
+
+    public Serviser getServiser() {
+        return serviser;
+    }
+
+    public void setServiser(Serviser serviser) {
+        this.serviser = serviser;
     }
     
 }

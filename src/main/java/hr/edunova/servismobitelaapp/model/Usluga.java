@@ -33,6 +33,12 @@ public class  Usluga extends Entitet{
     @ManyToOne
     private Poslovnica poslovnica;
     
+    @ManyToOne
+    private Korisnik korisnik;
+    
+    @ManyToOne
+    private Serviser serviser;
+    
     
     @OneToMany(mappedBy = "usluga")
     private List<Clan> clanovi = new ArrayList<>();
@@ -71,6 +77,23 @@ public class  Usluga extends Entitet{
     public void setPoslovnica(Poslovnica poslovnica) {
         this.poslovnica = poslovnica;
     }
+
+    public Korisnik getKorisnik() {
+        return korisnik;
+    }
+
+    public void setKorisnik(Korisnik korisnik) {
+        this.korisnik = korisnik;
+    }
+
+    public Serviser getServiser() {
+        return serviser;
+    }
+
+    public void setServiser(Serviser serviser) {
+        this.serviser = serviser;
+    }
+    
     
 
     @Override

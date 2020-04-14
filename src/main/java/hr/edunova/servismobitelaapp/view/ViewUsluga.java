@@ -75,20 +75,40 @@ public class ViewUsluga extends javax.swing.JFrame {
     private void ucitajVrijednosti() {
         obrada.getEntitet().setImeUsluge(txtImeUsluge.getText());
         obrada.getEntitet().setPoslovnica(cmbPoslovnica.getModel().getElementAt(cmbPoslovnica.getSelectedIndex()));
+        obrada.getEntitet().setKorisnik((Korisnik) cmbKorisnik.getSelectedItem());
+        obrada.getEntitet().setServiser(cmbServiser.getModel().getElementAt(cmbServiser.getSelectedIndex()));
 
+        try {
+            DefaultListModel<Clan> m = (DefaultListModel<Clan>)lstOpisServisa.getModel();
+            obrada.ocistiClanove();
+            for(int i=0;i<m.getSize();i++){
+                obrada.getEntitet().getClanovi().add(m.get(i));
+            }
+        } catch (Exception e) {
+        }
     }
     
+    private void postaviVrijednosti() {
+      
+        txtImeUsluge.setText(obrada.getEntitet().getImeUsluge());
+        postaviServiser();
+        postaviOpisServisa();
+        
+        
+    
+    }
 
     private void postaviServiser() {
         ComboBoxModel<Serviser> m = cmbServiser.getModel();
         for (int i = 0; i < m.getSize(); i++) {
             if (m.getElementAt(i).getSifra().equals(
-                    obrada.getEntitet().getServis().getSifra())) {
+                    obrada.getEntitet().getServiser().getSifra())) {
                 cmbServiser.setSelectedIndex(i);
                 break;
             }
         }
     }
+
     private void postaviOpisServisa() {
         DefaultListModel<Clan> m = new DefaultListModel<>();
         obrada.getEntitet().getClanovi().forEach(c -> {
@@ -96,7 +116,6 @@ public class ViewUsluga extends javax.swing.JFrame {
         });
         lstOpisServisa.setModel(m);
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -126,6 +145,7 @@ public class ViewUsluga extends javax.swing.JFrame {
         txtCijena = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtUvjet = new javax.swing.JTextField();
+        btnTrazi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -214,6 +234,13 @@ public class ViewUsluga extends javax.swing.JFrame {
             }
         });
 
+        btnTrazi.setText("Traži");
+        btnTrazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraziActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -245,12 +272,14 @@ public class ViewUsluga extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCijena)
-                    .addComponent(txtUvjet))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCijena)
+                        .addComponent(txtUvjet))
+                    .addComponent(btnTrazi))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -292,7 +321,8 @@ public class ViewUsluga extends javax.swing.JFrame {
                                 .addGap(25, 25, 25)
                                 .addComponent(jScrollPane2))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
+                                .addComponent(btnTrazi)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -305,6 +335,7 @@ public class ViewUsluga extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDodajNoviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajNoviActionPerformed
@@ -349,7 +380,7 @@ public class ViewUsluga extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
 
-    
+
     private void txtImeUslugeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImeUslugeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtImeUslugeActionPerformed
@@ -379,6 +410,10 @@ public class ViewUsluga extends javax.swing.JFrame {
             ucitajServise();
         }
     }//GEN-LAST:event_txtUvjetKeyPressed
+
+    private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
+        ucitajServise();
+    }//GEN-LAST:event_btnTraziActionPerformed
     private void ucitajServise() {
         DefaultListModel<Servis> m = new DefaultListModel<>();
         obradaServis.getPodaci(txtUvjet.getText().trim()).forEach(s -> m.addElement(s));
@@ -389,6 +424,7 @@ public class ViewUsluga extends javax.swing.JFrame {
     private javax.swing.JButton btnDodajNovi;
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromjeni;
+    private javax.swing.JButton btnTrazi;
     private javax.swing.JComboBox<Korisnik> cmbKorisnik;
     private javax.swing.JComboBox<Poslovnica> cmbPoslovnica;
     private javax.swing.JComboBox<Serviser> cmbServiser;
