@@ -69,7 +69,7 @@ public class ObradaUsluga extends Obrada<Usluga>{
 
     @Override
     protected void kontrolaDelete() throws EdunovaException {
-        
+        ocistiClanove();
     }
 
     @Override

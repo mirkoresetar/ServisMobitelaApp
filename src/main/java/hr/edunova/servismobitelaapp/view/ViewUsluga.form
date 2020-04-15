@@ -44,7 +44,7 @@
                       <Component id="cmbPoslovnica" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabel4" min="-2" pref="100" max="-2" attributes="0"/>
                       <Component id="cmbKorisnik" max="32767" attributes="0"/>
-                      <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtdatumZavršetka" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jLabel5" min="-2" pref="100" max="-2" attributes="0"/>
               </Group>
@@ -98,7 +98,7 @@
                               <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtdatumZavršetka" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnDodajNovi" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -181,7 +181,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Radni Nalog"/>
+        <Property name="text" type="java.lang.String" value="Ime Usluge"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbKorisnik">
@@ -238,9 +238,9 @@
         <Property name="text" type="java.lang.String" value="Poslovnica"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="txtdatumZavr&#x161;etka">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtdatumZavr&#x161;etkaActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -261,6 +261,9 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lstOpisServisaMouseClicked"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Clan&gt;"/>
           </AuxValues>

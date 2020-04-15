@@ -26,6 +26,7 @@ public class ObradaServis extends Obrada<Servis>{
     
     @Override
     protected void kontrolaCreate() throws EdunovaException {
+        kontrolaCreate();
         
     }
 
@@ -53,6 +54,11 @@ public class ObradaServis extends Obrada<Servis>{
     @Override
     protected void nakonSpremanja() throws EdunovaException {
         
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
     
 }

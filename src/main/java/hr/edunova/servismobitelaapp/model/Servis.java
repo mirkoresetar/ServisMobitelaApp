@@ -88,6 +88,7 @@ public class Servis extends Entitet {
         this.radnihSati = radnihSati;
     }
     
+    
     @Override
     public String toString() {
         return opisKvara;

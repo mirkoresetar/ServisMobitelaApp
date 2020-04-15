@@ -5,6 +5,7 @@
  */
 package hr.edunova.servismobitelaapp.model;
 
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -19,6 +20,8 @@ public class Clan extends Entitet{
     
     @ManyToOne
     private Serviser serviser;
+    
+    private Date datumZavršetka;
 
     public Servis getServis() {
         return servis;
@@ -43,5 +46,30 @@ public class Clan extends Entitet{
     public void setServiser(Serviser serviser) {
         this.serviser = serviser;
     }
+
+    public Date getDatumZavršetka() {
+        return datumZavršetka;
+    }
+
+    public void setDatumZavršetka(Date datumZavršetka) {
+        this.datumZavršetka = datumZavršetka;
+    }
+    
+    
+
+    @Override
+    public String toString() {
+        return getServis().toString();
+    }
+
+    public void setServis(Clan p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void set(Clan p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
     
 }

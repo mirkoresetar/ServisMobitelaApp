@@ -7,6 +7,7 @@ package hr.edunova.servismobitelaapp.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -25,6 +26,8 @@ public class  Usluga extends Entitet{
     
     
     private String imeUsluge;
+    
+    private Date datumZavršetka;
     
     
     @ManyToOne
@@ -50,6 +53,14 @@ public class  Usluga extends Entitet{
 
     public void setImeUsluge(String imeUsluge) {
         this.imeUsluge = imeUsluge;
+    }
+
+    public Date getDatumZavršetka() {
+        return datumZavršetka;
+    }
+
+    public void setDatumZavršetka(Date datumZavršetka) {
+        this.datumZavršetka = datumZavršetka;
     }
 
     

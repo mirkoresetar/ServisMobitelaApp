@@ -18,6 +18,7 @@ import hr.edunova.servismobitelaapp.model.Serviser;
 import hr.edunova.servismobitelaapp.model.Usluga;
 import hr.edunova.servismobitelaapp.util.EdunovaException;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -43,6 +44,7 @@ public class ViewUsluga extends javax.swing.JFrame {
         ucitajPoslovnice();
         ucitajKorisnike();
         ucitajServisere();
+        ucitajServise();
         ucitaj();
         obrada.setEntitet(new Usluga());
 
@@ -65,6 +67,10 @@ public class ViewUsluga extends javax.swing.JFrame {
         new ObradaKorisnik().getPodaci().forEach(p -> m.addElement(p));
         cmbKorisnik.setModel(m);
     }
+    
+    
+    
+    
 
     private void ucitaj() {
         DefaultListModel<Usluga> m = new DefaultListModel<>();
@@ -77,6 +83,8 @@ public class ViewUsluga extends javax.swing.JFrame {
         obrada.getEntitet().setPoslovnica(cmbPoslovnica.getModel().getElementAt(cmbPoslovnica.getSelectedIndex()));
         obrada.getEntitet().setKorisnik((Korisnik) cmbKorisnik.getSelectedItem());
         obrada.getEntitet().setServiser(cmbServiser.getModel().getElementAt(cmbServiser.getSelectedIndex()));
+        obrada.getEntitet().setDatumZavršetka(new Date());
+        
 
         try {
             DefaultListModel<Clan> m = (DefaultListModel<Clan>)lstOpisServisa.getModel();
@@ -91,8 +99,10 @@ public class ViewUsluga extends javax.swing.JFrame {
     private void postaviVrijednosti() {
       
         txtImeUsluge.setText(obrada.getEntitet().getImeUsluge());
+        txtdatumZavršetka.setText(obrada.getEntitet().getDatumZavršetka().toString());
         postaviServiser();
         postaviOpisServisa();
+        
         
         
     
@@ -116,6 +126,8 @@ public class ViewUsluga extends javax.swing.JFrame {
         });
         lstOpisServisa.setModel(m);
     }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -134,7 +146,7 @@ public class ViewUsluga extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         cmbPoslovnica = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtdatumZavršetka = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         lstOpisServisa = new javax.swing.JList<>();
@@ -178,7 +190,7 @@ public class ViewUsluga extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Radni Nalog");
+        jLabel1.setText("Ime Usluge");
 
         cmbKorisnik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,14 +216,19 @@ public class ViewUsluga extends javax.swing.JFrame {
 
         jLabel4.setText("Poslovnica");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtdatumZavršetka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtdatumZavršetkaActionPerformed(evt);
             }
         });
 
         jLabel5.setText("Datum Prijema");
 
+        lstOpisServisa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lstOpisServisaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(lstOpisServisa);
 
         jLabel6.setText("Opis Servisa");
@@ -265,7 +282,7 @@ public class ViewUsluga extends javax.swing.JFrame {
                         .addComponent(cmbPoslovnica, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cmbKorisnik, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1))
+                        .addComponent(txtdatumZavršetka))
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,7 +328,7 @@ public class ViewUsluga extends javax.swing.JFrame {
                                 .addGap(13, 13, 13)
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtdatumZavršetka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnDodajNovi)
@@ -393,9 +410,9 @@ public class ViewUsluga extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbKorisnikActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtdatumZavršetkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdatumZavršetkaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtdatumZavršetkaActionPerformed
 
     private void txtCijenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCijenaActionPerformed
         // TODO add your handling code here:
@@ -414,6 +431,44 @@ public class ViewUsluga extends javax.swing.JFrame {
     private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
         ucitajServise();
     }//GEN-LAST:event_btnTraziActionPerformed
+
+    private void lstOpisServisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstOpisServisaMouseClicked
+       if (evt.getClickCount() == 2) {
+            int index = lstOpisServisa.locationToIndex(evt.getPoint());
+            Clan p = lstOpisServisa.getModel().getElementAt(index);
+            
+            try {
+                DefaultListModel<Clan> m = (DefaultListModel<Clan>) lstOpisServisa.getModel();
+              for(int i=0;i<m.getSize();i++){
+                  if(m.get(i).getServis().getSifra().equals(p.getSifra())){
+                      return;
+                  }
+              } 
+            } catch (Exception e) {
+            }
+             
+            
+    
+            
+            Clan c = new Clan();
+            c.set(p);
+            c.setUsluga(obrada.getEntitet());
+            c.setDatumZavršetka(new Date());
+            DefaultListModel<Clan> m;
+            
+            try {
+                m
+                        = (DefaultListModel<Clan>) lstOpisServisa.getModel();
+            } catch (Exception e) {
+                m = new DefaultListModel<>();
+                lstOpisServisa.setModel(m);
+            }
+            
+            m.addElement(c);
+            lstOpisServisa.repaint();
+            
+        }
+    }//GEN-LAST:event_lstOpisServisaMouseClicked
     private void ucitajServise() {
         DefaultListModel<Servis> m = new DefaultListModel<>();
         obradaServis.getPodaci(txtUvjet.getText().trim()).forEach(s -> m.addElement(s));
@@ -439,12 +494,12 @@ public class ViewUsluga extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JList<Clan> lstOpisServisa;
     private javax.swing.JList<Usluga> lstPodaci;
     private javax.swing.JList<Servis> lstServisi;
     private javax.swing.JTextField txtCijena;
     private javax.swing.JTextField txtImeUsluge;
     private javax.swing.JTextField txtUvjet;
+    private javax.swing.JTextField txtdatumZavršetka;
     // End of variables declaration//GEN-END:variables
 }

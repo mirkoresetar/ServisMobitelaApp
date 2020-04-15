@@ -12,6 +12,7 @@ import hr.edunova.servismobitelaapp.model.Korisnik;
 import hr.edunova.servismobitelaapp.model.Poslovnica;
 import hr.edunova.servismobitelaapp.model.Serviser;
 import hr.edunova.servismobitelaapp.util.EdunovaException;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -23,27 +24,28 @@ import javax.swing.JOptionPane;
 public class ViewPoslovnica extends javax.swing.JFrame {
 
     private final ObradaPoslovnica obrada;
-    
+
     public ViewPoslovnica() {
         initComponents();
         obrada = new ObradaPoslovnica();
         ucitajKorisnike();
         ucitajServisere();
         ucitaj();
-        
+
     }
-    
-    private void ucitajKorisnike(){
-    DefaultComboBoxModel<Korisnik> m = new DefaultComboBoxModel<>();
-        new ObradaKorisnik().getPodaci().forEach(s->m.addElement(s));
+
+    private void ucitajKorisnike() {
+        DefaultComboBoxModel<Korisnik> m = new DefaultComboBoxModel<>();
+        new ObradaKorisnik().getPodaci().forEach(s -> m.addElement(s));
         cmbKorisnik.setModel(m);
     }
-    
-    private void ucitajServisere(){
+
+    private void ucitajServisere() {
         DefaultComboBoxModel<Serviser> m = new DefaultComboBoxModel<>();
-        new ObradaServiser().getPodaci().forEach(s->m.addElement(s));
+        new ObradaServiser().getPodaci().forEach(s -> m.addElement(s));
         cmbServiser.setModel(m);
     }
+
     private void ucitaj() {
         DefaultListModel<Poslovnica> m = new DefaultListModel<>();
         obrada.getPodaci().forEach(s -> m.addElement(s));
@@ -53,15 +55,39 @@ public class ViewPoslovnica extends javax.swing.JFrame {
     private void ucitajVrijednosti() {
         obrada.getEntitet().setIme(txtIme.getText());
         obrada.getEntitet().setAdresa(txtAdresa.getText());
+        obrada.getEntitet().setKorisnik((Korisnik) cmbKorisnik.getSelectedItem());
+        obrada.getEntitet().setServiser((Serviser) cmbServiser.getSelectedItem());
+
     }
 
     private void postaviVrijednosti() {
         txtIme.setText(obrada.getEntitet().getIme());
         txtAdresa.setText(obrada.getEntitet().getAdresa());
-        
+        postaviKorisnika();
+        postaviServisera();
 
     }
-   
+
+    private void postaviKorisnika() {
+        for (int i = 0; i < cmbKorisnik.getModel().getSize(); i++) {
+            if (cmbKorisnik.getModel().getElementAt(i).getSifra().equals(
+                    obrada.getEntitet().getKorisnik().getSifra())) {
+                cmbKorisnik.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+
+    private void postaviServisera() {
+        for (int i = 0; i < cmbServiser.getModel().getSize(); i++) {
+            if (cmbServiser.getModel().getElementAt(i).getSifra().equals(
+                    obrada.getEntitet().getServiser().getSifra())) {
+                cmbServiser.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -171,12 +197,9 @@ public class ViewPoslovnica extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,7 +219,8 @@ public class ViewPoslovnica extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDodajNovi)
                             .addComponent(btnPromjeni)
-                            .addComponent(btnObrisi))))
+                            .addComponent(btnObrisi)))
+                    .addComponent(jScrollPane1))
                 .addGap(24, 24, 24))
         );
 
@@ -263,7 +287,7 @@ public class ViewPoslovnica extends javax.swing.JFrame {
             return;
         }
         postaviVrijednosti();
-                             
+
     }//GEN-LAST:event_lstPodaciValueChanged
 
     private void cmbKorisnikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKorisnikActionPerformed
@@ -274,7 +298,6 @@ public class ViewPoslovnica extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbServiserActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodajNovi;
