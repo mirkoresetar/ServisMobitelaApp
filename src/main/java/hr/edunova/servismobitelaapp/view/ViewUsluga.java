@@ -44,7 +44,7 @@ public class ViewUsluga extends javax.swing.JFrame {
         ucitajPoslovnice();
         ucitajKorisnike();
         ucitajServisere();
-        ucitajServise();
+
         ucitaj();
         obrada.setEntitet(new Usluga());
 
@@ -68,10 +68,6 @@ public class ViewUsluga extends javax.swing.JFrame {
         cmbKorisnik.setModel(m);
     }
     
-    
-    
-    
-
     private void ucitaj() {
         DefaultListModel<Usluga> m = new DefaultListModel<>();
         obrada.getPodaci().forEach(s -> m.addElement(s));
@@ -80,35 +76,53 @@ public class ViewUsluga extends javax.swing.JFrame {
 
     private void ucitajVrijednosti() {
         obrada.getEntitet().setImeUsluge(txtImeUsluge.getText());
-        obrada.getEntitet().setPoslovnica(cmbPoslovnica.getModel().getElementAt(cmbPoslovnica.getSelectedIndex()));
+        obrada.getEntitet().setPoslovnica((Poslovnica) cmbPoslovnica.getSelectedItem());
         obrada.getEntitet().setKorisnik((Korisnik) cmbKorisnik.getSelectedItem());
-        obrada.getEntitet().setServiser(cmbServiser.getModel().getElementAt(cmbServiser.getSelectedIndex()));
+        obrada.getEntitet().setServiser((Serviser) cmbServiser.getSelectedItem());
         obrada.getEntitet().setDatumZavršetka(new Date());
-        
 
         try {
-            DefaultListModel<Clan> m = (DefaultListModel<Clan>)lstOpisServisa.getModel();
+            DefaultListModel<Clan> m = (DefaultListModel<Clan>) lstOpisServisa.getModel();
             obrada.ocistiClanove();
-            for(int i=0;i<m.getSize();i++){
+            for (int i = 0; i < m.getSize(); i++) {
                 obrada.getEntitet().getClanovi().add(m.get(i));
             }
         } catch (Exception e) {
         }
     }
-    
+
     private void postaviVrijednosti() {
-      
+
         txtImeUsluge.setText(obrada.getEntitet().getImeUsluge());
         txtdatumZavršetka.setText(obrada.getEntitet().getDatumZavršetka().toString());
-        postaviServiser();
+        postaviPoslovnice();
+        postaviKorisnike();
+        postaviServisere();
         postaviOpisServisa();
-        
-        
-        
+
+    }
+    private void postaviPoslovnice() {
+        for (int i = 0; i < cmbPoslovnica.getModel().getSize(); i++) {
+            if (cmbPoslovnica.getModel().getElementAt(i).getSifra().equals(
+                    obrada.getEntitet().getPoslovnica().getSifra())) {
+                cmbPoslovnica.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
     
+    private void postaviKorisnike() {
+        ComboBoxModel<Korisnik> m = cmbKorisnik.getModel();
+        for (int i = 0; i < m.getSize(); i++) {
+            if (m.getElementAt(i).getSifra().equals(
+                    obrada.getEntitet().getKorisnik().getSifra())) {
+                cmbKorisnik.setSelectedIndex(i);
+                break;
+            }
+        }
     }
 
-    private void postaviServiser() {
+    private void postaviServisere() {
         ComboBoxModel<Serviser> m = cmbServiser.getModel();
         for (int i = 0; i < m.getSize(); i++) {
             if (m.getElementAt(i).getSifra().equals(
@@ -126,8 +140,6 @@ public class ViewUsluga extends javax.swing.JFrame {
         });
         lstOpisServisa.setModel(m);
     }
-    
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -233,6 +245,11 @@ public class ViewUsluga extends javax.swing.JFrame {
 
         jLabel6.setText("Opis Servisa");
 
+        lstServisi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lstServisiMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(lstServisi);
 
         jLabel7.setText("Servisi");
@@ -245,6 +262,11 @@ public class ViewUsluga extends javax.swing.JFrame {
 
         jLabel8.setText("Cijena");
 
+        txtUvjet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUvjetActionPerformed(evt);
+            }
+        });
         txtUvjet.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtUvjetKeyPressed(evt);
@@ -431,31 +453,51 @@ public class ViewUsluga extends javax.swing.JFrame {
     private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
         ucitajServise();
     }//GEN-LAST:event_btnTraziActionPerformed
-
+    
+    private void ucitajServise() {
+        DefaultComboBoxModel<Servis> m = new DefaultComboBoxModel<>();
+        new ObradaServis().getPodaci(txtUvjet.getText().trim()).forEach(s -> m.addElement(s));
+        lstServisi.setModel(m);
+    }
     private void lstOpisServisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstOpisServisaMouseClicked
-       if (evt.getClickCount() == 2) {
+        if (evt.getClickCount() == 2) {
             int index = lstOpisServisa.locationToIndex(evt.getPoint());
-            Clan p = lstOpisServisa.getModel().getElementAt(index);
             
+            DefaultListModel<Clan> m = (DefaultListModel<Clan>) lstOpisServisa.getModel();
+            m.remove(index);
+            
+            lstOpisServisa.repaint();
+            
+        }
+        
+    }//GEN-LAST:event_lstOpisServisaMouseClicked
+
+    private void txtUvjetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUvjetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUvjetActionPerformed
+
+    private void lstServisiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstServisiMouseClicked
+        
+        if (evt.getClickCount() == 2) {
+            int index = lstServisi.locationToIndex(evt.getPoint());
+            Servis p = lstServisi.getModel().getElementAt(index);
+
             try {
                 DefaultListModel<Clan> m = (DefaultListModel<Clan>) lstOpisServisa.getModel();
-              for(int i=0;i<m.getSize();i++){
-                  if(m.get(i).getServis().getSifra().equals(p.getSifra())){
-                      return;
-                  }
-              } 
+                for (int i = 0; i < m.getSize(); i++) {
+                    if (m.get(i).getServis().getSifra().equals(p.getSifra())) {
+                        return;
+                    }
+                }
             } catch (Exception e) {
             }
-             
-            
-    
-            
+
             Clan c = new Clan();
-            c.set(p);
+            c.setServis(p);
             c.setUsluga(obrada.getEntitet());
             c.setDatumZavršetka(new Date());
             DefaultListModel<Clan> m;
-            
+
             try {
                 m
                         = (DefaultListModel<Clan>) lstOpisServisa.getModel();
@@ -463,17 +505,14 @@ public class ViewUsluga extends javax.swing.JFrame {
                 m = new DefaultListModel<>();
                 lstOpisServisa.setModel(m);
             }
-            
+
             m.addElement(c);
             lstOpisServisa.repaint();
-            
+
         }
-    }//GEN-LAST:event_lstOpisServisaMouseClicked
-    private void ucitajServise() {
-        DefaultListModel<Servis> m = new DefaultListModel<>();
-        obradaServis.getPodaci(txtUvjet.getText().trim()).forEach(s -> m.addElement(s));
-        lstServisi.setModel(m);
-    }
+        
+    }//GEN-LAST:event_lstServisiMouseClicked
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodajNovi;

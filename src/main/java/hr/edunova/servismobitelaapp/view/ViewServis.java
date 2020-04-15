@@ -23,47 +23,57 @@ import javax.swing.JOptionPane;
  * @author Mirko
  */
 public class ViewServis extends javax.swing.JFrame {
-    
+
     private final ObradaServis obrada;
-    
+
     public ViewServis() {
         initComponents();
         obrada = new ObradaServis();
         ucitajServisere();
         ucitaj();
-        
+
     }
-    
+
     private void ucitajVrijednosti() {
         obrada.getEntitet().setOpisKvara(txtNaziv.getText());
-        obrada.getEntitet().setServiser(cmbServiser.getItemAt(cmbServiser.getSelectedIndex()));
+        obrada.getEntitet().setServiser((Serviser) cmbServiser.getSelectedItem());
         obrada.getEntitet().setVrijemePocetka(new Date());
         obrada.getEntitet().setRadnihSati(txtradnihSati.getText());
         obrada.getEntitet().setCijena(Pomocno.getDecimalniBrojIzStringa(txtCijena.getText()));
-        
+
     }
-    
+
     private void postaviVrijednosti() {
         txtNaziv.setText(obrada.getEntitet().getOpisKvara());
         txtVrijemePocetka.setText(obrada.getEntitet().getVrijemePocetka().toString());
         txtradnihSati.setText(obrada.getEntitet().getRadnihSati());
         txtCijena.setText(Pomocno.getFormatDecimalniBroj(obrada.getEntitet().getCijena()));
-        
-        
+        postaviServisera();
+
     }
-    
+
     private void ucitajServisere() {
         DefaultComboBoxModel<Serviser> m = new DefaultComboBoxModel<>();
         new ObradaServiser().getPodaci().forEach(s -> m.addElement(s));
         cmbServiser.setModel(m);
     }
-    
+
     private void ucitaj() {
         DefaultListModel<Servis> m = new DefaultListModel<>();
         obrada.getPodaci().forEach(s -> m.addElement(s));
         lstPodaci.setModel(m);
     }
-    
+
+    private void postaviServisera() {
+        for (int i = 0; i < cmbServiser.getModel().getSize(); i++) {
+            if (cmbServiser.getModel().getElementAt(i).getSifra().equals(
+                    obrada.getEntitet().getServiser().getSifra())) {
+                cmbServiser.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -240,7 +250,7 @@ public class ViewServis extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Prvo odaberite stavku");
             return;
         }
-        
+
         ucitajVrijednosti();
         try {
             obrada.update();
