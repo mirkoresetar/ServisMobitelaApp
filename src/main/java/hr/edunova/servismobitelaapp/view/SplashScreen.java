@@ -55,7 +55,7 @@ public class SplashScreen extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mirko\\Downloads\\servismobitelalogo.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/servismobitelalogo.png"))); // NOI18N
         jLabel1.setToolTipText("");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(70, 0, 450, 300);

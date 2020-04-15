@@ -26,7 +26,7 @@ public class ObradaServis extends Obrada<Servis>{
     
     @Override
     protected void kontrolaCreate() throws EdunovaException {
-        kontrolaCreate();
+        
         
     }
 
