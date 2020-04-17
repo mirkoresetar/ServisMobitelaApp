@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Mirko
  */
-public class ObradaServiser extends Obrada<Serviser>{
+public class ObradaServiser extends Obrada<Serviser> {
 
     public ObradaServiser(Serviser entitet) {
         super(entitet);
@@ -23,21 +23,19 @@ public class ObradaServiser extends Obrada<Serviser>{
         super();
     }
 
-    
     @Override
     protected void kontrolaCreate() throws EdunovaException {
-        
-        
+
     }
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
-      
+
     }
 
     @Override
     protected void kontrolaDelete() throws EdunovaException {
-        
+
     }
 
     @Override
@@ -47,7 +45,7 @@ public class ObradaServiser extends Obrada<Serviser>{
 
     @Override
     protected void nakonSpremanja() throws EdunovaException {
-       
+
     }
-    
+
 }

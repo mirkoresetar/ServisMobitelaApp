@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hr.edunova.servismobitelaapp.model;
 
 import java.math.BigDecimal;
@@ -18,36 +13,30 @@ import javax.persistence.Table;
  *
  * @author Mirko
  */
-
 @Entity
-@Table(name="usluga")
-public class  Usluga extends Entitet{
+@Table(name = "usluga")
+public class Usluga extends Entitet {
 
-    
-    
     private String imeUsluge;
-    
+
     private Date vrijemeZavrsetka;
-    
+
     private Date vrijemePocetka;
-    
-    
+
     @ManyToOne
     private Servis servis;
-    
+
     @ManyToOne
     private Poslovnica poslovnica;
-    
+
     @ManyToOne
     private Korisnik korisnik;
-    
+
     @ManyToOne
     private Serviser serviser;
-    
-    
+
     @OneToMany(mappedBy = "usluga")
     private List<Clan> clanovi = new ArrayList<>();
-    
 
     public String getImeUsluge() {
         return imeUsluge;
@@ -73,11 +62,10 @@ public class  Usluga extends Entitet{
         this.vrijemePocetka = vrijemePocetka;
     }
 
-    
     public List<Clan> getClanovi() {
-       return clanovi;
+        return clanovi;
     }
-    
+
     public void setClanovi(List<Clan> clanovi) {
         this.clanovi = clanovi;
     }
@@ -113,13 +101,10 @@ public class  Usluga extends Entitet{
     public void setServiser(Serviser serviser) {
         this.serviser = serviser;
     }
-    
-    
 
     @Override
     public String toString() {
         return imeUsluge;
     }
-    
-    
+
 }

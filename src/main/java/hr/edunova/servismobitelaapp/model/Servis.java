@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hr.edunova.servismobitelaapp.model;
 
 import java.math.BigDecimal;
@@ -40,9 +35,6 @@ public class Servis extends Entitet {
     public void setUsluge(List<Usluga> usluge) {
         this.usluge = usluge;
     }
-    
-    
-    
 
     public Date getVrijemePocetka() {
         return vrijemePocetka;
@@ -51,8 +43,6 @@ public class Servis extends Entitet {
     public void setVrijemePocetka(Date vrijemePocetka) {
         this.vrijemePocetka = vrijemePocetka;
     }
-
-    
 
     public BigDecimal getCijena() {
         return cijena;
@@ -70,8 +60,6 @@ public class Servis extends Entitet {
         this.serviser = serviser;
     }
 
-    
-
     public String getOpisKvara() {
         return opisKvara;
     }
@@ -87,11 +75,10 @@ public class Servis extends Entitet {
     public void setRadnihSati(String radnihSati) {
         this.radnihSati = radnihSati;
     }
-    
-    
+
     @Override
     public String toString() {
         return opisKvara;
     }
-    
+
 }

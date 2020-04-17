@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package hr.edunova.servismobitelaapp.model;
 
 import java.util.Date;
@@ -10,17 +6,17 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Clan extends Entitet{
-    
+public class Clan extends Entitet {
+
     @ManyToOne
     private Servis servis;
-    
+
     @ManyToOne
     private Usluga usluga;
-    
+
     @ManyToOne
     private Serviser serviser;
-    
+
     private Date datumZavršetka;
 
     public Servis getServis() {
@@ -54,8 +50,6 @@ public class Clan extends Entitet{
     public void setDatumZavršetka(Date datumZavršetka) {
         this.datumZavršetka = datumZavršetka;
     }
-    
-    
 
     @Override
     public String toString() {
@@ -63,13 +57,11 @@ public class Clan extends Entitet{
     }
 
     public void setServis(Clan p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     public void set(Clan p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
-    
-    
-    
+
 }

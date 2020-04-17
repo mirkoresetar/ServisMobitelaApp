@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Mirko
  */
-public class ObradaPoslovnica extends Obrada<Poslovnica>{
+public class ObradaPoslovnica extends Obrada<Poslovnica> {
 
     public ObradaPoslovnica(Poslovnica poslovnica) {
         super(poslovnica);
@@ -22,31 +22,29 @@ public class ObradaPoslovnica extends Obrada<Poslovnica>{
     public ObradaPoslovnica() {
         super();
     }
-    
+
     public List<Poslovnica> getPodaci() {
         return session.createQuery("from Poslovnica").list();
     }
-    
+
     @Override
     protected void kontrolaCreate() throws EdunovaException {
-       
+
     }
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
-        
+
     }
 
     @Override
     protected void kontrolaDelete() throws EdunovaException {
-        
-    }
 
-    
+    }
 
     @Override
     protected void nakonSpremanja() throws EdunovaException {
-        
+
     }
-    
+
 }

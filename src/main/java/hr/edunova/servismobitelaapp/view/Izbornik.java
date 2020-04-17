@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hr.edunova.servismobitelaapp.view;
-
 
 import hr.edunova.servismobitelaapp.util.HibernateUtil;
 import hr.edunova.servismobitelaapp.util.Pomocno;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.hibernate.Hibernate;
 
 /**
  *
@@ -25,30 +16,30 @@ public class Izbornik extends javax.swing.JFrame {
      */
     public Izbornik() {
         initComponents();
-        
+
         setTitle(Pomocno.getNazivAplikacije());
         jmAplikacija.setText(Pomocno.getNazivAplikacije());
-        
+
         Vrijeme v = new Vrijeme();
         v.start();
-        
+
     }
-    
-    private class Vrijeme extends Thread{
+
+    private class Vrijeme extends Thread {
 
         SimpleDateFormat df = new SimpleDateFormat("dd. MM. yyyy. HH:mm:ss");
-        
+
         @Override
         public void run() {
             try {
                 lblVrijeme.setText(df.format(new Date()));
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
-                
+
             }
             run();
         }
-        
+
     }
 
     /**
@@ -170,7 +161,7 @@ public class Izbornik extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-       new ViewKorisnik().setVisible(true);
+        new ViewKorisnik().setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -184,7 +175,6 @@ public class Izbornik extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         new ViewUsluga().setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

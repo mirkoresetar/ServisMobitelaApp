@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hr.edunova.servismobitelaapp.view;
 
 import hr.edunova.servismobitelaapp.controller.ObradaServiser;
@@ -323,13 +318,13 @@ public class ViewServiser extends javax.swing.JFrame {
         }
 
         txtEmail.setText(
-            ocistiSuskavce(
-                txtIme.getText().substring(0, 1).toLowerCase()
-                + txtPrezime.getText().toLowerCase()
-                + "@servis.com"
-            )
+                ocistiSuskavce(
+                        txtIme.getText().substring(0, 1).toLowerCase()
+                        + txtPrezime.getText().toLowerCase()
+                        + "@servis.com"
+                )
         );
-        
+
     }//GEN-LAST:event_btnGenerirajEmailActionPerformed
 
     private void btnGenOibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenOibActionPerformed
@@ -362,8 +357,9 @@ public class ViewServiser extends javax.swing.JFrame {
         }
 
     }
-    private String ocistiSuskavce(String s){
-        return s.replace("š","s")
+
+    private String ocistiSuskavce(String s) {
+        return s.replace("š", "s")
                 .replace("đ", "d")
                 .replace("ž", "z")
                 .replace("ć", "c")

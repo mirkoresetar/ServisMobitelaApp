@@ -1,4 +1,3 @@
-
 package hr.edunova.servismobitelaapp.model;
 
 import javax.persistence.GeneratedValue;
@@ -12,10 +11,10 @@ import javax.persistence.MappedSuperclass;
  */
 @MappedSuperclass
 public abstract class Entitet {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+
     private Integer sifra;
 
     public Integer getSifra() {
@@ -25,7 +24,5 @@ public abstract class Entitet {
     public void setSifra(Integer sifra) {
         this.sifra = sifra;
     }
-    
-    
-    
+
 }

@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Mirko
  */
-public class ObradaServis extends Obrada<Servis>{
+public class ObradaServis extends Obrada<Servis> {
 
     public ObradaServis(Servis entitet) {
         super(entitet);
@@ -23,42 +23,41 @@ public class ObradaServis extends Obrada<Servis>{
         super();
     }
 
-    
     @Override
     protected void kontrolaCreate() throws EdunovaException {
-        
-        
+
     }
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
-      
+
     }
 
     @Override
     protected void kontrolaDelete() throws EdunovaException {
-      
+
     }
 
     @Override
     public List<Servis> getPodaci() {
-       return session.createQuery("from Servis").list();
+        return session.createQuery("from Servis").list();
     }
-    public List<Servis> getPodaci(String uvjet){
+
+    public List<Servis> getPodaci(String uvjet) {
         return session.createQuery("from Servis p "
                 + " where concat(p.opisKvara) like :uvjet ")
-               
                 .setParameter("uvjet", "%" + uvjet + "%")
                 .setMaxResults(20).list();
     }
+
     @Override
     protected void nakonSpremanja() throws EdunovaException {
-        
+
     }
 
     @Override
     public String toString() {
         return super.toString();
     }
-    
+
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hr.edunova.servismobitelaapp.view;
 
 import hr.edunova.servismobitelaapp.controller.ObradaKorisnik;
@@ -81,7 +76,6 @@ public class ViewUsluga extends javax.swing.JFrame {
         obrada.getEntitet().setKorisnik((Korisnik) cmbKorisnik.getSelectedItem());
         obrada.getEntitet().setServiser((Serviser) cmbServiser.getSelectedItem());
         obrada.getEntitet().setVrijemeZavrsetka(new Date());
-       
 
         try {
             DefaultListModel<Clan> m = (DefaultListModel<Clan>) lstOpisServisa.getModel();
@@ -97,8 +91,7 @@ public class ViewUsluga extends javax.swing.JFrame {
 
         txtImeUsluge.setText(obrada.getEntitet().getImeUsluge());
         txtdatumZavršetka.setText(obrada.getEntitet().getVrijemeZavrsetka().toString());
-       
- 
+
         postaviPoslovnice();
         postaviKorisnike();
         postaviServisere();
@@ -514,7 +507,7 @@ public class ViewUsluga extends javax.swing.JFrame {
             Clan c = new Clan();
             c.setServis(p);
             c.setUsluga(obrada.getEntitet());
-           
+
             c.setDatumZavršetka(new Date());
             DefaultListModel<Clan> m;
 
@@ -530,7 +523,7 @@ public class ViewUsluga extends javax.swing.JFrame {
             lstOpisServisa.repaint();
 
         }
-            zbrojiCijene();
+        zbrojiCijene();
 
     }//GEN-LAST:event_lstServisiMouseClicked
 

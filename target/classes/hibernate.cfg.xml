@@ -2,12 +2,12 @@
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
         
-       <!-- 
-        Potrebno je ručno kreirati bazu
-            create database servismobitelaapp_hib default character set utf8;
+<!-- 
+Potrebno je ručno kreirati bazu
+    create database servismobitelaapp_hib default character set utf8;
 
 
-        -->
+-->
         
 <hibernate-configuration>
     <session-factory>
@@ -27,12 +27,12 @@
         <property name="current_session_context_class">thread</property>
         <!-- Drop and re-create the database schema on startup -->
         <!-- 
-            validate: validate the schema, makes no changes to the database.
-            update: update the schema.
-            create: creates the schema, destroying previous data.
-            create-drop: drop the schema at the end of the session. 
-            1. puta create-drop, poslije update
-            -->
+        validate: validate the schema, makes no changes to the database.
+        update: update the schema.
+        create: creates the schema, destroying previous data.
+        create-drop: drop the schema at the end of the session. 
+        1. puta create-drop, poslije update
+        -->
         <property name="hbm2ddl.auto">update</property>
         <!-- dbcp connection pool configuration -->
         <property name="hibernate.dbcp.initialSize">5</property>

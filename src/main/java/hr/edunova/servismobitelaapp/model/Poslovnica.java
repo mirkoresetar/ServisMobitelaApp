@@ -1,4 +1,3 @@
-
 package hr.edunova.servismobitelaapp.model;
 
 import javax.persistence.Entity;
@@ -11,23 +10,16 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "poslovnica")
-public class Poslovnica extends Entitet{
-    
-    
+public class Poslovnica extends Entitet {
+
     private String ime;
     private String adresa;
-    
+
     @ManyToOne
     private Korisnik korisnik;
-    
+
     @ManyToOne
     private Serviser serviser;
-    
-    
-  
-    
-   
-    
 
     public String getIme() {
         return ime;
@@ -61,16 +53,9 @@ public class Poslovnica extends Entitet{
         this.adresa = adresa;
     }
 
-    
-    
     @Override
     public String toString() {
         return ime;
     }
 
-    
-    
-    
-    
-    
 }
