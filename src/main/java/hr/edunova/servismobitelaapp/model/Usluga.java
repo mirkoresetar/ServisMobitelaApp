@@ -27,7 +27,9 @@ public class  Usluga extends Entitet{
     
     private String imeUsluge;
     
-    private Date datumZavršetka;
+    private Date vrijemeZavrsetka;
+    
+    private Date vrijemePocetka;
     
     
     @ManyToOne
@@ -55,16 +57,23 @@ public class  Usluga extends Entitet{
         this.imeUsluge = imeUsluge;
     }
 
-    public Date getDatumZavršetka() {
-        return datumZavršetka;
+    public Date getVrijemeZavrsetka() {
+        return vrijemeZavrsetka;
     }
 
-    public void setDatumZavršetka(Date datumZavršetka) {
-        this.datumZavršetka = datumZavršetka;
+    public void setVrijemeZavrsetka(Date vrijemeZavrsetka) {
+        this.vrijemeZavrsetka = vrijemeZavrsetka;
+    }
+
+    public Date getVrijemePocetka() {
+        return vrijemePocetka;
+    }
+
+    public void setVrijemePocetka(Date vrijemePocetka) {
+        this.vrijemePocetka = vrijemePocetka;
     }
 
     
-
     public List<Clan> getClanovi() {
        return clanovi;
     }
