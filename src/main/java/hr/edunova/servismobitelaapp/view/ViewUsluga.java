@@ -205,7 +205,7 @@ public class ViewUsluga extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Ime Usluge");
+        jLabel1.setText("Ime Uređaja");
 
         cmbKorisnik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -391,7 +391,7 @@ public class ViewUsluga extends javax.swing.JFrame {
 
     private void btnDodajNoviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajNoviActionPerformed
         try {
-
+            obrada.setEntitet((new Usluga()));
             ucitajVrijednosti();
             obrada.create();
             ucitaj();

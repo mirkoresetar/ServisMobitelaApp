@@ -1,9 +1,17 @@
 package hr.edunova.servismobitelaapp.view;
 
+import hr.edunova.servismobitelaapp.controller.ObradaUsluga;
+import hr.edunova.servismobitelaapp.model.Usluga;
 import hr.edunova.servismobitelaapp.util.HibernateUtil;
 import hr.edunova.servismobitelaapp.util.Pomocno;
+import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import javax.swing.ImageIcon;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -22,8 +30,27 @@ public class Izbornik extends javax.swing.JFrame {
 
         Vrijeme v = new Vrijeme();
         v.start();
+        nacrtajGraf();
 
     }
+    private void nacrtajGraf(){
+        DefaultPieDataset pieDataset = new DefaultPieDataset();
+        for(Usluga g: new ObradaUsluga().getPodaci()){
+            pieDataset.setValue(g.getImeUsluge(), g.getClanovi().size());
+        }
+        JFreeChart chart = ChartFactory.createPieChart
+                     (" Udio kvarova po brandovima ",   // Title
+                      pieDataset,           // Dataset
+                      true,                  // Show legend  
+                      true,                 //tooltip
+                      new Locale("hr","HR") //locale
+                     );
+        
+        BufferedImage image = chart.createBufferedImage(
+                (int)lblGraf.getSize().getWidth(),
+                (int)lblGraf.getSize().getHeight());
+        lblGraf.setIcon(new ImageIcon(image));
+         }
 
     private class Vrijeme extends Thread {
 
@@ -53,6 +80,7 @@ public class Izbornik extends javax.swing.JFrame {
 
         jToolBar1 = new javax.swing.JToolBar();
         lblVrijeme = new javax.swing.JLabel();
+        lblGraf = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmAplikacija = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -68,6 +96,7 @@ public class Izbornik extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
 
         lblVrijeme.setText("vrijeme");
+        jToolBar1.add(lblVrijeme);
 
         jmAplikacija.setText("Aplikacija");
 
@@ -132,17 +161,14 @@ public class Izbornik extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblVrijeme)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(lblGraf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 222, Short.MAX_VALUE)
-                .addComponent(lblVrijeme)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(lblGraf, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -188,6 +214,7 @@ public class Izbornik extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenu jmAplikacija;
+    private javax.swing.JLabel lblGraf;
     private javax.swing.JLabel lblVrijeme;
     // End of variables declaration//GEN-END:variables
 }
